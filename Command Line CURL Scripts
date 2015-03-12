@@ -1,0 +1,112 @@
+These are example snipets of API call to IBM Watson Developer Cloud Services
+These samples include temporary credentials that will eventually expire
+To get your own credentials sign up for a free trial at www.IBM.com/WatsonDeveloperCloud
+__________________________________________
+__________________________________________
+
+Personality Insights
+
+
+export PROFILE="Call me Ishmael. Some years ago-never mind how long precisely-"\
+"having little or no money in my purse, and nothing particular to interest me "\
+"on shore, I thought I would sail about a little and see the watery part of "\
+"the world. It is a way I have of driving off the spleen and regulating the "\
+"circulation. Whenever I find myself growing grim about the mouth; whenever it "\
+"is a damp, drizzly November in my soul; whenever I find myself involuntarily "\
+"pausing before coffin warehouses, and bringing up the rear of every funeral I "\
+"meet; and especially whenever my hypos get such an upper hand of me, that it "\
+"requires a strong moral principle to prevent me from deliberately stepping "\
+"into the street, and methodically knocking people's hats off-then, I account "\
+"it high time to get to sea as soon as I can."
+
+curl -X POST -v \
+  -u cb929f96-cd68-426d-aa07-b92f92e29ce7:yQ13ahPfD1Nm \
+  -H "Content-Type: application/json" \
+  -d "{\"contentItems\":[{\"content\":\"$PROFILE\"}]}" \
+  https://gateway.watsonplatform.net/personality-insights/api/v2/profile
+
+
+__________________________________________
+__________________________________________
+
+Message Resonance
+
+curl X GET -v \
+  -H "Authorization: Basic N2FmZDY4NWYtZTIwMS00ZjRiLTlhYzctMDk2YmNhMDk4MDNjOnVkd1paenVNbEFXVA" \
+  -G \
+  --data-urlencode "text=cloud" \
+  --data-urlencode "dataset=2" \
+  https://gateway.watsonplatform.net/messageresonance/service/api/v1/ringscore
+
+__________________________________________
+__________________________________________
+
+Question Answer - Healthcare
+
+curl -X POST -v \
+  -H "Authorization: Basic NWZjOTUxODktYTI5NS00MTdkLWIyMWMtNTAxODRlYWViMDY5OlV6d2JUcWM1a1VqNA" \
+  -H "Content-Type: application/json" \
+  -H "X-synctimeout: 30" \
+  -d "{\"question\":{\"questionText\":\"What are the benefits of taking Aspirin daily?\"}}" \
+  https://gateway.watsonplatform.net/qagw/service/v1/question/healthcare
+
+__________________________________________
+__________________________________________
+
+
+Machine Translation
+
+curl -X POST -v \
+  -H "Authorization: Basic N2UyYWJiYTctZmE1OS00MTYwLWJmODgtMzNkMzc5N2FjMTNkOktDcmVJRkJ4eHk3RQ==" \
+  --data-urlencode "txt=This is a test" \
+  --data-urlencode "sid=mt-enus-eses" \
+  https://gateway.watsonplatform.net/machine-translation-beta/api/v1/smt/0
+
+
+curl -X POST \
+  -u 7e2abba7-fa59-4160-bf88-33d3797ac13d:KCreIFBxxy7E \
+  --data-urlencode "txt=This is a test" \
+  --data-urlencode "sid=mt-enus-eses" \
+  https://gateway.watsonplatform.net/machine-translation-beta/api/v1/smt/0
+
+__________________________________________
+__________________________________________
+
+
+Relationship Extraction
+
+
+curl -X POST -v \
+  -u 050445bd-3d33-4ef1-b45c-b71d710a14ab:TmubDriPRO0M \
+  --data-urlencode "txt=John Brown was a lucky man. He lived with his wife Janice in Orlando Florida. They had 3 children" \
+  --data-urlencode "sid=ie-en-news" \
+  https://gateway.watsonplatform.net/relationship-extraction-beta/api
+
+
+
+__________________________________________
+__________________________________________
+
+Speech to Text
+
+curl -X POST -v \
+  -u 8d003112-324e-49cf-a746-e45309d674b5:ryA0TpKoeXn1 \
+  --header "Transfer-Encoding: chunked" \
+  --header "Content-Type: audio/x-flac; rate=44100" \
+  --data-binary @sample.flac \
+  https://stream.watsonplatform.net/speech-to-text-beta/api/v1/recognize
+
+
+
+__________________________________________
+__________________________________________
+
+Visual Recognition
+
+
+curl -X POST -v \
+  -u ee3dc11f-e50d-4817-8830-21e45fc896ce:Pcmot5bCylBK \
+  -F "img-file=@Tiger.jpg" \
+  https://gateway.watsonplatform.net/visual-recognition-beta/api/v1/tag/recognize
+
+
