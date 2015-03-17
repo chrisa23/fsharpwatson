@@ -2,11 +2,9 @@
 //These samples include temporary credentials that will eventually expire
 //To get your own credentials sign up for a free trial at www.IBM.com/WatsonDeveloperCloud
 
-//Make sure you install Http.fs via Nuget
+//The code section for machine translation, realtionship extraction and Q&A have an unresolved issue with Content-Length resulting in a 411 error code. If you find a fix submit a pull request and I will commit the fix.
 
-//FIX MT, RELATIONSHIP EXTRACTION AND QA
-//ADD SPEECH TO TEXT, VISUAL RECOGNITION
- 
+//Make sure you install Http.fs via Nuget
 #r @"..\packages\Http.fs.1.5.1\lib\net40\HttpClient.dll"
  
 open HttpClient 
@@ -43,6 +41,7 @@ Chief among these motives was the overwhelming idea of the great whale himself. 
 By reason of these things, then, the whaling voyage was welcome; the great flood-gates of the wonder-world swung open, and in the wild conceits that swayed me to my purpose, two and two there floated into my inmost soul, endless processions of the whale, and, mid most of them all, one grand hooded phantom, like a snow hill in the air." "ISO-8859-5"
 request |> getResponseBody
 
+//The following examples return a 411 code related to http.client and how Content-Length is passed
 
 //Machine Translation http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/machine-translation.html
 let request =  
@@ -67,6 +66,6 @@ let request =
     createRequest Post "https://gateway.watsonplatform.net/qagw/service/v1/question/healthcare"
     |> withBasicAuthentication "09800125-a45d-478e-a4db-63d298298695" "CqkI47KwX6E1"
     |> withHeader (ContentType "application/json")  
-//  |> withHeader (X-synctimeout "30")
+    |> withHeader (X-synctimeout "30")
     |> withBodyEncoded "What are the benefits of taking Aspirin daily?" "ISO-8859-5"
 request |> getResponse
